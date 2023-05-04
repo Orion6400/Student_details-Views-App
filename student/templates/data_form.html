@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Form</title>
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="{{ student_details.first_name|default:'' }}"><br>
+
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="{{ student_details.last_name|default:'' }}"><br>
+
+            <label for="emial">Email:</label><br>
+            <input type="email" id="email" name="email" value="{{ student_details.email|default:'' }}"><br>
+
+            <label for="address1">Address_1:</label><br>
+            <input type="text" id="address1" name="address1" value="{{ student_details.Address_1|default:'' }}"><br>
+
+            <label for="address2">Address_2:</label><br>
+            <input type="text" id="address2" name="address2" value="{{ student_details.Address_2|default:'' }}"><br>
+
+            <label for="mobile">Mobile:</label><br>
+            <input type="text" id="mobile" name="mobile" value="{{ student_details.Guardian_Cell_phone|default:'' }}"><br>
+
+            <label for="class">Class:</label><br>
+            <input type="number" id="class" name="class" value="{{ school_details.c_class|default:'' }}"><br>
+
+            <label for="percentage">Percentage:</label><br>
+            <input type="number" step="any" id="percentage" name="percentage" value="{{ school_details.Percentage|default:'' }}"><br>
+
+            <label for="commute">School Convence:</label>
+            <input type="checkbox" id="commute" name="Commute" value="True" {% if school_details.Commute  %} checked {% endif %}><br>
+
+            <input type="submit" value="Submit">
+
+          </form>
+    </body>
+    </html>

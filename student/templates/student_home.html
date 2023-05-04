@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+        <div>
+            <a href="{% url 'create_data' %}">Add student</a>
+        </div>
+    <div>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Class</th>
+                <th>Delete</th>
+                <th>Update</th>
+              </tr>
+        </table>
+        <table>
+            {% for student in page_obj %}
+                <tr>
+                    <td>{{ student.student.id }}</td> 
+                    <td>{{ student.student.first_name }}{{' '}}{{ student.student.last_name }} </td> 
+                    <td>{{student.student.Address_1}}{{","}}{{student.student.Address_2}}</td>
+                    <td>{{student.c_class}}</td>
+                    <td><a href="{% url 'delete' student.student.id %}">delete</a></td>
+                    <td><a href="{% url 'update' student.student.id %}">update</a></td>
+                    
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+        <div class="pagination">
+            <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1" class="btn btn-success">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-success">previous</a>
+                    {% endif %}
+                    <span class="current-page">
+                        {{ page_obj.number }}
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-success">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-success">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            
+    </body>
+</html>
